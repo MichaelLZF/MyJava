@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping>
+	<class name="com.ssh.employee.domain.Employee" table="employee">
+		<id name="eid" column="eid">
+			<generator class="native"></generator>
+		</id>
+		<property name="ename" column="ename"></property>
+		<property name="sex" column="sex"></property>
+		<property name="birthday" column="birthday"></property>
+		<property name="joinDay" column="joinDay"></property>
+		<property name="eno" column="eno"></property>
+		<property name="username" column="username"></property>
+		<property name="password" column="password"></property>
+		<many-to-one name="department" lazy="false" column="dno" class="com.ssh.employee.domain.Department"></many-to-one>
+	</class>
+</hibernate-mapping>
