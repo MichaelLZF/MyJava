@@ -2,6 +2,7 @@ package basic;
 
 /**
  * 位移算法版；
+ * 三次互换位置
  */
 import java.util.Scanner;
 
