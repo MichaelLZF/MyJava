@@ -13,9 +13,8 @@ public class Main1001 {
 			System.out.print("-");
 		}
 		sum = Math.abs(sum);
-//		if(sum<1000||){
-//			System.out.println(sum);
-//		}
+		//格式化输出
+		System.out.printf("%,d",sum);
 	}
 
 }
