@@ -32,7 +32,7 @@ public class CreateBinaryTree {
 //	        System.out.println("depth:"+getDepth(root));
 //	        System.out.println("Kleaves:"+getKlevel(root,3));
 //	        System.out.println("structure:"+structrueCmp(root,root2));
-	        System.out.println(findnode(root,nodeList.get(7),nodeList.get(8)).data);
+//	        System.out.println(findnode(root,nodeList.get(7),nodeList.get(8)).data);
 	  }
     private static List<Node> nodeList = null;
 	public static class Node{
@@ -219,18 +219,18 @@ public class CreateBinaryTree {
      * @param tar2
      * @return
      */
-    public static Node findnode(Node node,Node tar1,Node tar2){
-    	if(node ==null){
-    		return null;
-    	}
-    	if(node==tar1 || node ==tar2){
-    		return node;
-    	}
-    	Node left = findnode(node.leftChild,tar1,tar2);
-    	Node right = findnode(node.rightChild,tar1,tar2);
-    	if(left ==node.leftChild && right==node.rightChild){
-    		return node;
-    	}
-    	return left==node.leftChild ? left :right;
-    }
+//    public static Node findnode(Node node,Node tar1,Node tar2){
+//    	if(node ==null){
+//    		return null;
+//    	}
+//    	if(node==tar1 || node ==tar2){
+//    		return node;
+//    	}
+//    	Node left = findnode(node.leftChild,tar1,tar2);
+//    	Node right = findnode(node.rightChild,tar1,tar2);
+//    	if(left ==node.leftChild && right==node.rightChild){
+//    		return node;
+//    	}
+//    	return left==node.leftChild ? left :right;
+//    }
 }
