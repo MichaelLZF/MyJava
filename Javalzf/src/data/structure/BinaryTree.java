@@ -1,4 +1,4 @@
-package sort;
+package data.structure;
 
 import java.util.LinkedList;
 import java.util.Scanner;
