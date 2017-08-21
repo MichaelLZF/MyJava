@@ -1,0 +1,135 @@
+import java.util.*;
+public class Main{
+    public static void main(String args[]){
+        Scanner in=new Scanner(System.in);
+        int n=in.nextInt();
+        int a[]=new int[n];
+        for(int i=0;i<n;i++){
+            a[i]=in.nextInt();
+        }
+        int begin=0;
+        int end=n-1;
+        int count=0;
+        while(begin<end){
+            if(a[begin]<a[end]){
+                a[begin+1]=a[begin]+a[begin+1];
+                begin++;
+                count++;
+            }else if(a[begin]>a[end]){
+                a[end-1]=a[end-1]+a[end];
+                end--;
+                count++;
+            }else{
+                begin++;
+                end--;
+            }
+        }
+        System.out.println(count);
+    }
+}	
+
+
+/*思路 从m 到n 至少需要多少步
+* mark[i]记录到达位置i的最少步数。初始化mark[],起始位置mark[m]为0外，其它位置都为无穷大
+* i~[m,n-2]依次更新mark[]:
+* 判断，如果mark[i]为无穷大，则说明该位置不可由m到达，那么该位置也就到不了n。跳过，不作处理。减枝。
+* 如果mark[i]不是无穷大，计算i的因子，对每一个因子求出i的下一步的位置tmp，如果mark[tmp]>mark[i]+1，更新mark[tmp]=mark[i]+1;
+* 最终结果是mark[n],如果mark[n]是无穷大，则输出-1；否则返回mark[n]。
+*/
+/*
+* 比如以8开始 mark[8]=0,8的因子list={2,4},
+* factor=2,可到达10,mark[10]原本是无穷大,现在更新mark[10]=mark[8]+1;12同理。
+* 循环下一个i=9，mark[9]是无穷大，跳过，不用处理。
+* 也就是由8产生10和12，接下来就处理10,12及其产生的位置，而无需处理其他。
+*/
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.lang.Math;
+public class Main{
+    public static int deal(int m,int n){//m到n
+        int mark[]=new int[n+1];//记录到达每一个位置的步数
+        for(int i=0;i<=n;i++){                          //初始化
+            mark[i]=Integer.MAX_VALUE;
+        }
+        mark[m]=0;                                      //初始化
+        for(int i=m;i<n-1;i++){                         //填mark[]
+                if(mark[i]==Integer.MAX_VALUE)continue; //如果当前起始位置本身不可达 不作处理
+                ArrayList<Integer> list=allFactor(i);   //获得当前位置i的所有因子
+                for(int j=0;j<list.size();j++){         //计算i能到达的每一个位置tmp
+                    int tmp=i+list.get(j);
+                    int count=mark[i]+1;
+                    if(tmp<=n&&mark[tmp]>count){        //如果从i到达位置tmp的次数比以前记录的小 更新mark[tmp]
+                        mark[tmp]=count;
+                    }
+                }          
+        }
+        return mark[n];
+    }
+    public static ArrayList<Integer>  allFactor(int n){//获得n的所有因子 除1 n外
+        ArrayList list=new ArrayList();
+        for(int i=2;i<=Math.sqrt(n);i++){
+            if(n%i==0){
+                list.add(i);
+                if(i!=n/i)list.add(n/i);
+            }
+        }
+        return list;
+    }
+    public static void main(String args[]){
+        Scanner sc=new Scanner(System.in);
+         int m=sc.nextInt();
+         int n=sc.nextInt();
+         int r=deal(m,n);
+         if(r==Integer.MAX_VALUE)r=-1;
+         System.out.println(r);
+        }  
+}
+
+//复杂度O(1)方法
+import java.util.*;
+public class Main{
+    public static void main(String args[]) {
+        Scanner in = new Scanner(System.in);
+        while(in.hasNextInt()){
+            int n = in.nextInt();
+            System.out.println(count(n));
+        }
+    }
+    public static int count(int n){
+        if(n%2!=0||n==10||n<6) return -1;//一定是偶数（6，8都是）,最小是6，10以上偶数都可以；
+        if(n%8==0) return n/8;//如果拿八个拿完最好
+        return 1+n/8;//对于10以上的偶数，只要对8取余数不为0，就要从前面的1或者2个8中拿出2个，把余数补为6（本来余数就是6，就不用拿）。所以+1；
+    }
+}
+
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int y1,y2,y3,y4;
+        float a,b,c;
+        while (in.hasNextInt()) {
+            y1 = in.nextInt();
+            y2 = in.nextInt();
+            y3 = in.nextInt();
+            y4 = in.nextInt();
+            a=(y1+y3)/2f;
+            b=(y3-y1)/2f;
+            c=(y4-y2)/2f;
+            if((a-((y1+y3)/2))!=0){
+                System.out.print("No");
+                return ;
+            }
+            if((b-((y3-y1)/2)!=0)||(b!=((y2+y4)/2))){
+                System.out.print("No");
+                return ;
+            }
+            if((c-((y4-y2)/2))!=0){
+                System.out.print("No");
+            return ;
+            }
+            //满足所有的约束条件，输出解。
+            System.out.print((int)a+" "+(int)b+" "+(int)c);
+            }
+    }
+}
