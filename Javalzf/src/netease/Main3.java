@@ -14,18 +14,18 @@ public class Main3 {
 		getList(n, k,1);
 		
 	}
-	private static Map<Integer,List<Integer>> getList(int n,int k){
-		Map<Integer,List<Integer>> maps = new HashMap<Integer,List<Integer>>();
-		List<Integer> lists = new ArrayList<Integer>();
-		for(int i = 1;i<=k;i++){
-			for(int j = 1;j<=n;j++){
-				lists.add(i);
-			}
-		}
-		int m = 0;
-		maps.put(m++, lists);
-		
-	}
+//	private static Map<Integer,List<Integer>> getList(int n,int k){
+//		Map<Integer,List<Integer>> maps = new HashMap<Integer,List<Integer>>();
+//		List<Integer> lists = new ArrayList<Integer>();
+//		for(int i = 1;i<=k;i++){
+//			for(int j = 1;j<=n;j++){
+//				lists.add(i);
+//			}
+//		}
+//		int m = 0;
+//		maps.put(m++, lists);
+//		
+//	}
 	private static void getList(int n,int k,int i){
 		int count = 0;
 		List<Integer> lists = new ArrayList<Integer>();
